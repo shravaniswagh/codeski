@@ -11,8 +11,9 @@ public:
         mp['M'] = 1000;
         
         int ans = 0;
+        int n = s.length();
 
-        for(int i=0;i<s.length();i++){
+        for(int i=0;i<n;i++){
             if(mp[s[i]]<mp[s[i+1]]){
                 ans = ans - mp[s[i]];
             }
