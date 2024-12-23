@@ -1,9 +1,10 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        if(x==0)
-        return x;
-        int y= sqrt(x);
-        return y;
+        int ans = 0;
+        for (long long i = 0; i * i <= x; i++) {
+            ans = i; 
+        }
+        return ans;
     }
 };
