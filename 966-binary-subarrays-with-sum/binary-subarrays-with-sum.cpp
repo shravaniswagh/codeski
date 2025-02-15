@@ -1,25 +1,16 @@
 class Solution {
 public:
     int numSubarraysWithSum(vector<int>& nums, int goal) {
-        int n = nums.size();
-        int cnt = 0;
-        
-       
-        bool allSame = (unordered_set<int>(nums.begin(), nums.end()).size() == 1);
-        
-        
-        if (allSame && nums[0] == goal) {
-            return (n * (n + 1)) / 2;
-        }
+        unordered_map<int,int> prefixcnt;
+        int sum = 0,cnt = 0;
+        prefixcnt[0] = 1;
 
-        
-        for (int i = 0; i < n; i++) {
-            int sum = 0;
-            for (int j = i; j < n; j++) {
-                sum += nums[j];
-                if (sum == goal) cnt++;
-                if (sum > goal) break; 
+        for(int num : nums){
+            sum += num;
+            if(prefixcnt.find(sum - goal) != prefixcnt.end()){
+                cnt += prefixcnt[sum - goal];
             }
+            prefixcnt[sum]++;
         }
         return cnt;
     }
